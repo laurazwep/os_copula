@@ -1,0 +1,19 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# os_copula
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Code for project on using optimal scaling for ordering of discrete/categorical variables for copula estimation. 

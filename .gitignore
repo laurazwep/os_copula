@@ -2,5 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-data/*
 results/*
+data/*
+scripts/old/*
+todos.txt
