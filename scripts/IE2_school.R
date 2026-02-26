@@ -95,6 +95,6 @@ dev.off()
 set.seed(123)
 obj_plot_2 <- plot(fit_orig$copula, var_names = "use") + labs(title = NULL, x = NULL, y = NULL) + 
   theme_base() + theme(axis.text = element_blank(), axis.ticks = element_blank())
-pdf("results/figures/IE2_vine_tree_orig.pdf", height = 6, width = 6)
+pdf("results/figures/IE2_vine_tree_orig.pdf", height = 4, width = 6)
 print(obj_plot_2)
 dev.off()
