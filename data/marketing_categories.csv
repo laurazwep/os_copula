@@ -1,0 +1,85 @@
+variable;categorie;value;description
+Income;Less than $10,000;1;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$10,000 to $14,999;2;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$15,000 to $19,999;3;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$20,000 to $24,999;4;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$25,000 to $29,999;5;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$30,000 to $39,999;6;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$40,000 to $49,999;7;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$50,000 to $74,999;8;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Income;$75,000 or more;9;ANNUAL INCOME OF HOUSEHOLD (PERSONAL INCOME IF SINGLE)
+Sex;Male;1;
+Sex;Female;2;
+Marital;Married;1;
+Marital;Living together, not married;2;
+Marital;Divorced or separated;3;
+Marital;Widowed;4;
+Marital;Single, never married;5;
+Age;14 thru 17;1;
+Age;18 thru 24;2;
+Age;25 thru 34;3;
+Age;35 thru 44;4;
+Age;45 thru 54;5;
+Age;55 thru 64;6;
+Age;65 and Over;7;
+Edu;Grade 8 or less;1;
+Edu;Grades 9 to 11;2;
+Edu;Graduated high school;3;
+Edu;1 to 3 years of college;4;
+Edu;College graduate;5;
+Edu;Grad Study;6;
+Occupation;Professional/Managerial;1;
+Occupation;Sales Worker;2;
+Occupation;Factory Worker/Laborer/Driver;3;
+Occupation;Clerical/Service Worker;4;
+Occupation;Homemaker;5;
+Occupation;Student, HS or College;6;
+Occupation;Military;7;
+Occupation;Retired;8;
+Occupation;Unemployed;9;
+Lived;Less than one year;1;HOW LONG HAVE YOU LIVED IN THE SAN FRAN/OAKLAND/SAN JOSE AREA?
+Lived;One to three years;2;HOW LONG HAVE YOU LIVED IN THE SAN FRAN/OAKLAND/SAN JOSE AREA?
+Lived;Four to six years;3;HOW LONG HAVE YOU LIVED IN THE SAN FRAN/OAKLAND/SAN JOSE AREA?
+Lived;Seven to ten years;4;HOW LONG HAVE YOU LIVED IN THE SAN FRAN/OAKLAND/SAN JOSE AREA?
+Lived;More than ten years;5;HOW LONG HAVE YOU LIVED IN THE SAN FRAN/OAKLAND/SAN JOSE AREA?
+Dual_Income;Not Married;1;DUAL INCOMES (IF MARRIED)
+Dual_Income;Yes;2;DUAL INCOMES (IF MARRIED)
+Dual_Income;No;3;DUAL INCOMES (IF MARRIED)
+Household;One;1;PERSONS IN YOUR HOUSEHOLD
+Household;Two;2;PERSONS IN YOUR HOUSEHOLD
+Household;Three;3;PERSONS IN YOUR HOUSEHOLD
+Household;Four;4;PERSONS IN YOUR HOUSEHOLD
+Household;Five;5;PERSONS IN YOUR HOUSEHOLD
+Household;Six;6;PERSONS IN YOUR HOUSEHOLD
+Household;Seven;7;PERSONS IN YOUR HOUSEHOLD
+Household;Eight;8;PERSONS IN YOUR HOUSEHOLD
+Household;Nine or more;9;PERSONS IN YOUR HOUSEHOLD
+Householdu18;None;0;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;One;1;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Two;2;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Three;3;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Four;4;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Five;5;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Six;6;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Seven;7;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Eight;8;PERSONS IN HOUSEHOLD UNDER 18
+Householdu18;Nine or more;9;PERSONS IN HOUSEHOLD UNDER 18
+Status;Own;1;HOUSEHOLDER STATUS
+Status;Rent;2;HOUSEHOLDER STATUS
+Status;Live with Parents/Family;3;HOUSEHOLDER STATUS
+Home_Type;House;1;
+Home_Type;Condominium;2;
+Home_Type;Apartment;3;
+Home_Type;Mobile Home;4;
+Home_Type;Other;5;
+Ethnic;American Indian;1;
+Ethnic;Asian;2;
+Ethnic;Black;3;
+Ethnic;East Indian;4;
+Ethnic;Hispanic;5;
+Ethnic;Pacific Islander;6;
+Ethnic;White;7;
+Ethnic;Other;8;
+Language;English;1;WHAT LANGUAGE IS SPOKEN MOST OFTEN IN YOUR HOME?
+Language;Spanish;2;WHAT LANGUAGE IS SPOKEN MOST OFTEN IN YOUR HOME?
+Language;Other;3;WHAT LANGUAGE IS SPOKEN MOST OFTEN IN YOUR HOME?

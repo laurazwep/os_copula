@@ -1,8 +1,20 @@
 #Marketing example: survey in San Francisco shopping mall with demographic information
 
 #load all functions and libraries
-source("scripts/functions/functions_libraries.R")
+library(rvinecopulib)
+library(tidyverse)
+library(patchwork)
+library(os.pca)
 source("scripts/functions/ggplot_functions.R")
+
+#function for data cleaning
+recode_marketing <- function(data, mark_cats) {
+  for (column in colnames(data)) {
+    data[, column] <- ordered(data[, column], labels = mark_cats[mark_cats$variable == column, "categorie"])
+  }
+  return(data)
+}
+
 set.seed(123)
 
 #### Data ####
@@ -13,19 +25,21 @@ mark_orig <- recode_marketing(marketing, mark_cats) %>%
   mutate(Householdu18 = fct_collapse(Householdu18, `Seven or more` = c("Seven", "Eight", "Nine or more")))
 
 #### OS ####
-output_nom <- os_pca(data = mark_orig, level = c(rep("nominal", ncol(mark_orig))), ndim = 2, homals_only = FALSE, keep_data = TRUE)
-mark_os <- os_to_ordered(data = mark_orig, os_object = output_nom)$cat_data
+output_nom <- os_pca(data = mark_orig, level = c(rep("nominal", ncol(mark_orig))), ndim = 10, homals_only = FALSE, keep_data = TRUE)
+mark_os <- os_to_ordered(data = mark_orig, os_object = output_nom)
 
 #### copula: fit, log-likelihood & simulate ####
 start_time <- Sys.time()
 cat(paste0("Start copula at ", start_time, "\n"))
 
 #original ordering
-fit_orig <- vine(mark_orig, cores = 12, copula_controls = list(family_set = "parametric"))
+fit_orig <- vine(mark_orig, cores = 12, copula_controls = list(family_set = "parametric"),
+                 margins_controls = list(mult = 0.5))
 cat(paste0("Finished original order at ", Sys.time(), ", after ", round(Sys.time() - start_time, 2), " minutes \n"))
 
 #os: nominal
-fit_nom <- vine(mark_os, cores = 12, copula_controls = list(family_set = "parametric"))
+fit_nom <- vine(mark_os, cores = 12, copula_controls = list(family_set = "parametric"),
+                margins_controls = list(mult = 0.5))
 cat(paste0("Finished OS at ", Sys.time(), ", after ", round(Sys.time() - start_time, 2), " minutes \n"))
 
 save(fit_orig, fit_nom,  file = "results/IE3_copulas.Rdata")

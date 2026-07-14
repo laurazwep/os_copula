@@ -1,7 +1,13 @@
 #Simulation example: categorical (3 cats) and continuous
 
 #load all functions and libraries
-source("scripts/functions/functions_libraries.R")
+library(rvinecopulib)
+library(tidyverse)
+library(patchwork)
+library(os.pca)
+library(fastDummies)
+
+source("scripts/functions/ggplot_functions.R")
 
 set.seed(123)
 
