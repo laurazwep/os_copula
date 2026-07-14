@@ -1,8 +1,20 @@
 #Marketing example: survey in San Francisco shopping mall with demographic information
 
 #load all functions and libraries
-source("scripts/functions/functions_libraries.R")
+library(rvinecopulib)
+library(tidyverse)
+library(patchwork)
+library(os.pca)
 source("scripts/functions/ggplot_functions.R")
+
+#function for data cleaning
+recode_marketing <- function(data, mark_cats) {
+  for (column in colnames(data)) {
+    data[, column] <- ordered(data[, column], labels = mark_cats[mark_cats$variable == column, "categorie"])
+  }
+  return(data)
+}
+
 set.seed(123)
 
 #### Data ####
@@ -13,8 +25,8 @@ mark_orig <- recode_marketing(marketing, mark_cats) %>%
   mutate(Householdu18 = fct_collapse(Householdu18, `Seven or more` = c("Seven", "Eight", "Nine or more")))
 
 #### OS ####
-output_nom <- os_pca(data = mark_orig, level = c(rep("nominal", ncol(mark_orig))), ndim = 2, homals_only = FALSE, keep_data = TRUE)
-mark_os <- os_to_ordered(data = mark_orig, os_object = output_nom)$cat_data
+output_nom <- os_pca(data = mark_orig, level = c(rep("nominal", ncol(mark_orig))), ndim = 10, homals_only = FALSE, keep_data = TRUE)
+mark_os <- os_to_ordered(data = mark_orig, os_object = output_nom)
 
 #### copula: fit, log-likelihood & simulate ####
 start_time <- Sys.time()

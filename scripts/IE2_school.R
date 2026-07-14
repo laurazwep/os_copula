@@ -1,13 +1,39 @@
 #School example: Portuguese language grades in high school
 
 #load all functions and libraries
-source("scripts/functions/functions_libraries.R")
+library(rvinecopulib)
+library(tidyverse)
+library(patchwork)
+library(os.pca)
 source("scripts/functions/ggplot_functions.R")
+
+#function for cleaning data
+recode_education <- function(data, to_factor = FALSE) {
+  if (to_factor) {
+    for (vari in c("Fedu", "Medu", "freetime", "goout", "Dalc", "Walc", 
+                   "traveltime", "famrel", "studytime", "health")) {
+      data[, vari] <- as.ordered(data[, vari])
+    }
+  }
+  for (vari in c("Fedu", "Medu")) {
+    levels(data[, vari]) <- c("none",  "primary education \n(4th grade)", "primary education \n(5th to 9th grade)",
+                              "secondary education", "higher education")
+  }
+  for (vari in c("freetime", "goout", "Dalc", "Walc")) {
+    levels(data[, vari]) <- c("very low", "low", "medium", "high", "very high")
+  }
+  levels(data$traveltime) <- c("< 15 min.", "15 to 30 min.", "30 min to 1 hour", "> 1 hour")
+  levels(data$famrel) <- c("very bad", "bad", "neutral", "good",  "excellent")
+  levels(data$studytime) <-  c("< 2 hours", "2 to 5 hours",  "5 to 10 hours", "> 10 hours")
+  levels(data$health) <- c("very bad", "bad","neutral", "good", "very good")
+  
+  return(data)
+}
+
 set.seed(97346592)
 
 #### Data ####
 discr <- c("age", "G1", "G2", "G3")
-
 #load data
 # original data Kaggle
 edu_orig <- read.csv("data/student-por.csv") %>% 
@@ -16,11 +42,13 @@ edu_orig <- read.csv("data/student-por.csv") %>%
   select(-absences) %>% 
   recode_education()
 
+not_discr <- setdiff(names(edu_orig), discr)
+
 #### OS ####
 #rank numeric (ordinal without ties)
 levels_ord <- rep("nominal", ncol(edu_orig))
 levels_ord[names(edu_orig) %in% discr] <- "ordinal"
-output_ord <- os_pca(data = edu_orig, level = levels_ord, ndim = 2, keep_data = TRUE, reflec1 = FALSE, reflec2 = FALSE)
+output_ord <- os_pca(data = edu_orig, level = levels_ord, ndim = 10, keep_data = TRUE)
 edu_ord <- os_to_ordered(data = edu_orig, os_object = output_ord)
 
 #### copula: fit, log-likelihood & simulate ####
@@ -28,13 +56,13 @@ start_time <- Sys.time()
 cat(paste0("Start copula at ", start_time, "\n"))
 set.seed(123)
 #original ordering, no os
-fit_orig <- vine(edu_orig, cores = 12, 
+fit_orig <- vine(edu_orig, cores = 4, 
                  copula_controls = list(family_set = "parametric"), margins_controls = list(mult = 1))
 cat(paste0("Finished naive at ", Sys.time(), ", after ", round(Sys.time() - start_time, 2), " minutes \n"))
 
 start_time <- Sys.time()
 #os: partly ordinal-> keep original values (treat ordinal as numeric)
-fit_ord <- vine(edu_ord, cores = 12, 
+fit_ord <- vine(edu_ord, cores = 4, 
                 copula_controls = list(family_set = "parametric"), margins_controls = list(mult = 1))
 
 cat(paste0("Finished ord at ", Sys.time(), ", after ", round(Sys.time() - start_time, 2), " minutes \n"))
@@ -42,7 +70,6 @@ cat("save file:\n")
 save(fit_orig, fit_ord, file = "results/IE2_copulas.Rdata")
 
 cat("finished")
-
 
 #Get results
 load("results/IE2_copulas.Rdata")
