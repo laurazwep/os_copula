@@ -56,14 +56,16 @@ start_time <- Sys.time()
 cat(paste0("Start copula at ", start_time, "\n"))
 set.seed(123)
 #original ordering, no os
-fit_orig <- vine(edu_orig, cores = 4, 
-                 copula_controls = list(family_set = "parametric"), margins_controls = list(mult = 0.5))
+fit_orig <- vine(edu_orig, cores = 4, copula_controls = list(family_set = "parametric"), 
+                 margins_controls = list(mult = 0.5))
+
 cat(paste0("Finished naive at ", Sys.time(), ", after ", round(Sys.time() - start_time, 2), " minutes \n"))
 
 start_time <- Sys.time()
 #os: partly ordinal-> keep original values (treat ordinal as numeric)
-fit_ord <- vine(edu_ord, cores = 4, 
-                copula_controls = list(family_set = "parametric"), margins_controls = list(mult = 0.5))
+fit_ord <- vine(edu_ord, cores = 4, copula_controls = list(family_set = "parametric"), 
+                margins_controls = list(mult = 0.5))
+
 
 cat(paste0("Finished ord at ", Sys.time(), ", after ", round(Sys.time() - start_time, 2), " minutes \n"))
 cat("save file:\n")
